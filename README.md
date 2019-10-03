@@ -7,7 +7,7 @@ When you're building a React Native app, you'll be making new components a lot. 
 There are two ways to define a component:
 
 - Class Component
-
+  The requirement for creating class components is extends Component of lib react. And use the render function to define JSX syntax.
   example:
   ```
   ./Header.js
@@ -26,7 +26,7 @@ There are two ways to define a component:
   ```
 
 - Function Component
-
+  Different from defining the class component, the function component does not need to extend to component, and does not need a render function to define JSX syntax.
   example:
   ```
   ./Content.js
@@ -52,7 +52,7 @@ There are two ways to define a component:
     ```
   
   - Add to JSX
-  
+
   	example:
     ```
 	  <Header />
@@ -82,3 +82,6 @@ There are two ways to define a component:
     }
 	  ...
     ```
+    
+    There are two component terms based on their placement, namely the parent component and the child component,
+in the example above, the Header and Content components are called child components, while the App component is called the parent component
