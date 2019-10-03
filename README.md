@@ -1,39 +1,84 @@
-# Hello React Native
+# Component
 
-In this section, You will learn how to make a hello world app with react-native. To make something similar with this repository, follow these steps:
-  - Go to the App.js file, and change the code to the following
+When you're building a React Native app, you'll be making new components a lot. Anything you see on the screen is some sort of component. A component can be pretty simple - the only thing that's required is a render function which returns some JSX to render.
+
+## Define Component
+
+There are two ways to define a component:
+
+- Class Component
+
+  example:
   ```
-  // import lib React for define component
-  import React, { Component } from 'react';
-  // import native component react-native
-  import { View, Text, StyleSheet } from 'react-native';
-
-  // create class component
-  class App extends Component {
-
-    // use the render function to define the component appearance
+  ./Header.js
+  
+  ...
+  class Header extends Component {
     render() {
       return (
         <View style={styles.container}>
-          <Text style={styles.textHelloWorld}>Hello World</Text>
+          <Text style={styles.textHeader}>Header</Text>
         </View>
       )
     }
   }
-
-  // don't forget to export the components
-  export default App;
-
-  // define style with StyleSheet
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center'
-    },
-    textHelloWorld: {
-      fontSize: 30
-    }
-  })
+  ...
   ```
-  - Restart the application by opening the emulator then press ctrl+m for windows or cmd+m for mac, then select reload
+
+- Function Component
+
+  example:
+  ```
+  ./Content.js
+  
+  ...
+  function Content() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.textContent}>Content</Text>
+      </View>
+    )
+  }
+  ...
+  ```
+  
+## How to use component
+
+  - import component according to path location
+ 
+    example:
+    ```
+    import Header from './Header'
+    ```
+  
+  - Add to JSX
+  
+  	example:
+    ```
+	  <Header />
+    ```
+    
+    Full example how to use component:
+    ```
+	  ./App.js
+    
+    ...
+    // import component
+    import Header from './Header';
+    import Content from './Content';
+
+    // create class component
+    class App extends Component {
+
+      // use the render function to define the component appearance
+      render() {
+        return (
+          <View style={styles.container}>
+            <Header />
+            <Content />
+          </View>
+        )
+      }
+    }
+	  ...
+    ```

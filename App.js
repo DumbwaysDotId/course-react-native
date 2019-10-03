@@ -1,7 +1,10 @@
 // import lib React for define component
 import React, { Component } from 'react';
 // import native component react-native
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+
+import Header from './Header';
+import Content from './Content';
 
 // create class component
 class App extends Component {
@@ -10,7 +13,8 @@ class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.textHelloWorld}>Hello World</Text>
+        <Header />
+        <Content />
       </View>
     )
   }
@@ -22,9 +26,7 @@ export default App;
 // define style with StyleSheet
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    flex: 1
   },
   textHelloWorld: {
     fontSize: 30
