@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native'; 
 
-function Content() {
+function Content(props) {
   return (
     <View style={styles.container}>
-      <Text style={styles.textContent}>Content</Text>
+      <Text style={styles.textContent}>{props.textContent}</Text>
     </View>
   )
 }

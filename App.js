@@ -13,8 +13,8 @@ class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Header />
-        <Content />
+        <Header title="This is title" />
+        <Content textContent="This is content"/>
       </View>
     )
   }

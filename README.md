@@ -1,91 +1,68 @@
-# Component
+# Props
 
-When you're building a React Native app, you'll be making new components a lot. Anything you see on the screen is some sort of component. A component can be pretty simple - the only thing that's required is a render function which returns some JSX to render.
+Most components can be customized when they are created, with different parameters. These creation parameters are called props, short for properties.
+If in html commonly called attributes, such as id, class, onclick, etc.
 
-## Define Component
+## Define Props
 
-There are two ways to define a component:
+  For example, one basic React Native component is the Image. When you create an image, you can use a prop named source to control what image it shows.
 
-- Class Component
+  ```
+  ...
+  <Image source={{ url: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavari'}} style={{width: 193}} />
+  ...
+  ```
+  *Above there are source and style props, which have been determined by their name and value type.*
 
-  The requirement for creating class components is extends Component of lib react. And use the render function to define JSX syntax.
 
-  example:
+  Your own components can also use props.
+
+  For example:
+
+  ```
+  ./App.js
+
+  ...
+  <Header title="This is header" />
+  ...
+  ```
+  *from defining the props above, there is the name of the props is **title** and value props is **This is header***
+
+
+## How to use props on the own component
+
+  - If the component definition is a class component
+
+  Use *this.props.name_props* inside the function of class component, for example in render, componentDidMount, etc, or custom function.
+
   ```
   ./Header.js
-  
-  ...
-  class Header extends Component {
-    render() {
-      return (
-        <View style={styles.container}>
-          <Text style={styles.textHeader}>Header</Text>
-        </View>
-      )
-    }
-  }
-  ...
-  ```
 
-- Function Component
-
-  Different from defining the class component, the function component does not need to extend to component, and does not need a render function to define JSX syntax.
-
-  example:
-  ```
-  ./Content.js
-  
   ...
-  function Content() {
+  render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.textContent}>Content</Text>
+        <Text style={styles.textHeader}>{this.props.title}</Text>
       </View>
     )
   }
   ...
   ```
-  
-## How to use component
 
-  - import component according to path location
- 
-    example:
-    ```
-    import Header from './Header'
-    ```
-  
-  - Add to JSX
+  - If the component definition is a function component
 
-  	example:
-    ```
-	<Header />
-    ```
-    
-    Full example how to use component:
-    ```
-	./App.js
-    
-    ...
-    // import component
-    import Header from './Header';
-    import Content from './Content';
+  Props will be considered as parameters in the function.
 
-    // create class component
-    class App extends Component {
+  ```
+  ./Content.js
 
-      // use the render function to define the component appearance
-      render() {
-        return (
-          <View style={styles.container}>
-            <Header />
-            <Content />
-          </View>
-        )
-      }
-    }
-	...
-    ```
-
-    There are two component terms based on their placement, namely the parent component and the child component,
-in the example above, the Header and Content components are called child components, while the App component is called the parent component
+  ...
+  function Content(props) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.textContent}>{props.textContent}</Text>
+      </View>
+    )
+  }
+  ...
+  ```
