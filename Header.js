@@ -2,10 +2,24 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 class Header extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      showTitle: false
+    }
+
+    setInterval(() => {
+      this.setState({
+        showTitle: !this.state.showTitle
+      })
+    }, 1000)
+
+  }
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.textHeader}>{this.props.title}</Text>
+        {this.state.showTitle ? <Text style={styles.textHeader}>{this.props.title}</Text> : null}
       </View>
     )
   }

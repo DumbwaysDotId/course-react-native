@@ -1,67 +1,61 @@
-# Props
+# State
 
-Most components can be customized when they are created, with different parameters. These creation parameters are called props, short for properties.
-If in html commonly called attributes, such as id, class, onclick, etc.
+There are two types of data that control a component: props and state. props are set by the parent and they are fixed throughout the lifetime of a component. For data that is going to change, we have to use state.
 
-## Define Props
+## Define State
 
-  - For example, one basic React Native component is the Image. When you create an image, you can use a prop named source to control what image it shows.
+  Define the state in the constructor, so that the value initialization is done the first time the component is run.
 
-    ```
-    ...
-    <Image source={{ url: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavari'}} style={{width: 193}} />
-    ...
-    ```
-    *Above there are source and style props, which have been determined by their name and value type.*
+  ```
+  ./Header.js
 
-  - Your own components can also use props.
-
-    For example:
-
-    ```
-    ./App.js
-
-    ...
-    <Header title="This is header" />
-    ...
-    ```
-    *from defining the props above, there is the name of the props is **title** and value props is **This is header***
-
-
-## How to use props on the own component
-
-  - If the component definition is a class component
-
-    Use *this.props.name_props* inside the function of class component, for example in render, componentDidMount, etc, or custom function.
-
-    ```
-    ./Header.js
-
-    ...
-    render() {
-      return (
-        <View style={styles.container}>
-          <Text style={styles.textHeader}>{this.props.title}</Text>
-        </View>
-      )
+  ...
+    class Header extends Component {
+      constructor() {
+        super();
+        // define state here
+        this.state = {
+          showTitle: false
+        }
+      }
     }
-    ...
-    ```
+  ...
+  ```
+  *State data types are objects, properties in them, called name state (showTitle), and their values are called state values (false).*
 
-  - If the component definition is a function component
+## Change value state
 
-    Props will be considered as parameters in the function.
+  To change the state value, use the setState function with the object parameter containing the state name and new state value
 
-    ```
-    ./Content.js
+  For example triggers run the setState function by using the default javascript function, [setInterval](https://www.w3schools.com/jsref/met_win_setinterval.asp)
 
-    ...
-    function Content(props) {
-      return (
-        <View style={styles.container}>
-          <Text style={styles.textContent}>{props.textContent}</Text>
-        </View>
-      )
-    }
-    ...
-    ```
+  ```
+  ./Header.js
+
+  ...
+  setInterval(() => {
+    this.setState({
+      showTitle: !this.state.showTitle
+    })
+  }, 1000)
+  ...
+  ```
+  
+## How to use state
+
+  How to use state is almost the same as how to use props, just *this.state.name_state*
+
+  ```
+  ./Header.js
+
+  ...
+  render() {
+    return (
+      <View style={styles.container}>
+        {/* use inline condition */}
+        {this.state.showTitle ? <Text style={styles.textHeader}>{this.props.title}</Text> : null}
+      </View>
+    )
+  }
+  ...
+  ```
